@@ -4,7 +4,10 @@
 
 import { useState, useEffect } from 'react'
 
-/** This hook allows you to debounce any fast changing value. The debounced value will only reflect the latest value when the useDebounce hook has not been called for the specified time period.
+/** This hook allows you to debounce any fast changing value.
+ *
+ * The debounced value will only reflect the latest value when the useDebounce hook
+ * has not been called for the specified time period.
  */
 export const useDebounce = <TData>(value: TData, delayInMs: number) => {
   // State and setters for debounced value

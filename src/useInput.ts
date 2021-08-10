@@ -1,7 +1,6 @@
 import { useState, ChangeEventHandler, Dispatch, SetStateAction } from 'react'
 
-/** Used to handle the binding of inputs on forms.
- */
+/** Used to handle the binding of inputs on forms */
 export const useInput = (
   initialValue: string,
   onChangeHandler?: (value: string) => void,
