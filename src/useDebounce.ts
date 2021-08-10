@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 
-/** Debounceses the update of the statue value
- * @argument {string | number | boolean} value
- * @argument {number} delayInMs
+/** Debounce the update of the statue value by x ms.
+ * This is helpful for running events when input changes, but only when the user is done,
+ * rather than after every update.
  */
 export const useDebounce = <TData>(value: TData, delayInMs: number) => {
   // State and setters for debounced value

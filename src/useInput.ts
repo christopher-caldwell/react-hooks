@@ -1,6 +1,6 @@
 import { useState, ChangeEventHandler, Dispatch, SetStateAction } from 'react'
 
-/** Returns the state value, the bind, the setter, and resetter in an array
+/** Used to handle the binding of inputs on forms.
  */
 export const useInput = (
   initialValue: string,
