@@ -2,24 +2,15 @@
   "name": "@caldwell619/react-hooks",
   "version": "0.0.1",
   "description": "Collection of useful, reusable React hooks",
-  "author": "christopher-caldwell",
-  "license": "MIT",
-  "repository": "christopher-caldwell/@caldwell619/react-hooks",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.ts",
-  "engines": {
-    "node": ">=10"
-  },
   "scripts": {
+    "type-check": "tsc --noEmit",
     "format": "prettier --write src",
-    "build": "microbundle-crl --compress --external=react,react-dom,react-is",
-    "start": "yarn build --watch",
-    "prepublishOnly": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
     "lint": "eslint --ext .ts,.tsx src",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "build": "microbundle-crl --compress --external=react,react-dom,react-is",
+    "prepublishOnly": "run-s build",
+    "release": "standard-version",
+    "publish-release": "git push --follow-tags origin master && yarn publish",
+    "publish-version": "sh scripts/publish.sh"
   },
   "peerDependencies": {
     "react": ">=16.0.0"
@@ -50,5 +41,25 @@
   },
   "files": [
     "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:christopher-caldwell/react-hooks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/christopher-caldwell/react-hooks/issues"
+  },
+  "author": "christopher-caldwell",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.ts",
+  "engines": {
+    "node": ">=10"
+  },
+  "keywords": [
+    "hook",
+    "react",
+    "reusable"
   ]
 }
