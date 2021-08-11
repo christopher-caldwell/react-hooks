@@ -15,13 +15,13 @@ if [ $? != 0 ]; then
   exit 1
 fi
 
-printf "\n\n$BICyan$(echo Building the project..:)$Color_Off"
+printf "\n\n$BICyan$(echo Checking types)$Color_Off"
 printf "\n\n"
 
 if [ -d dist ]; then
   rm -r dist
 fi
-yarn build
+yarn type-check
 
 if [ $? != 0 ]; then
   printf "\n\n$Red$(echo Build failed.)$Color_Off"
