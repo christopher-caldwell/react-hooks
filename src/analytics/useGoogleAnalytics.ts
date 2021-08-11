@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 
 const isRunningLocally = process.env.NODE_ENV !== 'production'
-console.log('isRunningLocally', isRunningLocally)
 
 /** Creates the script tag that loads Google Analytics. Exposes 2 functions that can log analytics events */
 export const useGoogleAnalytics = (id: string) => {
