@@ -1,29 +1,24 @@
 import { useEffect } from 'react'
 
-const isRunningLocally = process.env.STAGE === 'local' || process.env.NODE_ENV !== 'production'
+const isRunningLocally = process.env.NODE_ENV !== 'production'
+console.log('isRunningLocally', isRunningLocally)
 
 /** Creates the script tag that loads Google Analytics. Exposes 2 functions that can log analytics events */
 export const useGoogleAnalytics = (id: string) => {
   if (!id) {
     throw new Error('Must provide id')
   }
+
   useEffect(() => {
-    let script = document.createElement('script')
-    script.type = 'text/javascript'
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`
-    document.body.appendChild(script)
+    if (!window.gtag) return
+    window.dataLayer = window.dataLayer || []
 
-    setTimeout(() => {
-      if (!window.gtag) return
-      window.dataLayer = window.dataLayer || []
+    window.gtag('js', new Date())
 
-      window.gtag('js', new Date())
-
-      window.gtag('config', id, {
-        anonymize_ip: true,
-        cookie_expires: 0
-      })
-    }, 500)
+    window.gtag('config', id, {
+      anonymize_ip: true,
+      cookie_expires: 0
+    })
   }, [id])
 
   return {
