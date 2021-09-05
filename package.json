@@ -1,35 +1,25 @@
 {
   "name": "@caldwell619/react-hooks",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Collection of useful, reusable React hooks",
-  "author": "christopher-caldwell",
-  "license": "MIT",
-  "repository": "christopher-caldwell/@caldwell619/react-hooks",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.ts",
-  "engines": {
-    "node": ">=10"
-  },
   "scripts": {
+    "type-check": "tsc --noEmit",
     "format": "prettier --write src",
     "build": "sh scripts/build.sh",
-    "start": "yarn build --watch",
     "prepublishOnly": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
     "lint": "eslint --ext .ts,.tsx src",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "release": "standard-version",
+    "publish-release": "git push --follow-tags origin master && yarn publish",
+    "publish-version": "sh scripts/publish.sh"
   },
   "peerDependencies": {
     "react": ">=16.0.0",
     "next": ">=11"
   },
+  "optionalDependencies": {
+    "next": ">=10.0.0"
+  },
   "devDependencies": {
-    "@material-ui/core": "^4.12.2",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "@types/gtag.js": "^0.0.7",
     "@types/jest": "^25.1.4",
     "@types/node": "^12.12.38",
@@ -43,13 +33,31 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "rc": "^1.2.8",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-ga": "^3.3.0",
     "react-scripts": "^4.0.3",
+    "standard-version": "^9.3.1",
     "typescript": "^4.1.3"
   },
   "files": [
     "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:christopher-caldwell/react-hooks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/christopher-caldwell/react-hooks/issues"
+  },
+  "author": "christopher-caldwell",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.ts",
+  "engines": {
+    "node": ">=10"
+  },
+  "keywords": [
+    "hook",
+    "react",
+    "reusable"
   ]
 }

@@ -1,25 +1,23 @@
 import { useEffect } from 'react'
 
+const isRunningLocally = process.env.NODE_ENV !== 'production'
+
 /** Creates the script tag that loads Google Analytics. Exposes 2 functions that can log analytics events */
 export const useGoogleAnalytics = (id: string) => {
   if (!id) {
     throw new Error('Must provide id')
   }
+
   useEffect(() => {
-    setTimeout(() => {
-      let script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`
-      document.body.appendChild(script)
-      window.dataLayer = window.dataLayer || []
+    if (!window.gtag) return
+    window.dataLayer = window.dataLayer || []
 
-      window.gtag('js', new Date())
+    window.gtag('js', new Date())
 
-      window.gtag('config', id, {
-        anonymize_ip: true,
-        cookie_expires: 0
-      })
-    }, 0)
+    window.gtag('config', id, {
+      anonymize_ip: true,
+      cookie_expires: 0
+    })
   }, [id])
 
   return {
@@ -36,6 +34,8 @@ declare global {
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const logAnalyticsPageView = (url: string, analyticsId: string) => {
+  if (isRunningLocally) return
+  if (!window.gtag) console.error('G Tag is not truthy')
   window.gtag('config', analyticsId, {
     page_path: url
   })
@@ -43,6 +43,8 @@ export const logAnalyticsPageView = (url: string, analyticsId: string) => {
 
 /** Function used to log specified events configured in the Google Analytics console */
 export const logAnalyticsEvent = ({ action, category, label, value }: GTagEvent) => {
+  if (isRunningLocally) return
+  if (!window.gtag) console.error('G Tag is not truthy')
   window.gtag('event', action, {
     event_category: category,
     event_label: label,
