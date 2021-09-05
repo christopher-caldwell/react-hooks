@@ -13,7 +13,7 @@
   },
   "scripts": {
     "format": "prettier --write src",
-    "build": "microbundle-crl --compress --external=react,react-dom,react-is",
+    "build": "sh scripts/build.sh",
     "start": "yarn build --watch",
     "prepublishOnly": "run-s build",
     "test": "run-s test:unit test:lint test:build",
@@ -22,7 +22,8 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": ">=16.0.0"
+    "react": ">=16.0.0",
+    "next": ">=11"
   },
   "devDependencies": {
     "@material-ui/core": "^4.12.2",
@@ -37,7 +38,7 @@
     "cross-env": "^7.0.2",
     "eslint-plugin-prettier": "^3.4.0",
     "gh-pages": "^2.2.0",
-    "microbundle-crl": "^0.13.10",
+    "microbundle": "^0.13.3",
     "next": "^11.0.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",

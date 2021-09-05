@@ -2,11 +2,11 @@
  * @source https://usehooks.com/useLocalStorage/
  */
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, Dispatch, SetStateAction } from 'react'
 
 import { useWindow } from './useWindow'
 
-export const useLocalStorage = <T>(key: string, initialValue: T, shouldLogErrors?: boolean) => {
+export const useLocalStorage = <T>(key: string, initialValue: T, shouldLogErrors?: boolean): UseLocalStorage<T> => {
   const { localWindow } = useWindow()
 
   const [storedValue, setStoredValue] = useState<T>(() => {
@@ -34,3 +34,5 @@ export const useLocalStorage = <T>(key: string, initialValue: T, shouldLogErrors
 
   return [storedValue, setValue]
 }
+
+export type UseLocalStorage<T> = [T, Dispatch<SetStateAction<T>>]
