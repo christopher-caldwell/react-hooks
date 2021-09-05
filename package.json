@@ -6,7 +6,7 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write src",
     "build": "sh scripts/build.sh",
-    "prepublishOnly": "run-s build",
+    "prepublishOnly": "yarn build",
     "lint": "eslint --ext .ts,.tsx src",
     "release": "standard-version",
     "publish-release": "git push --follow-tags origin master && yarn publish",
@@ -15,9 +15,6 @@
   "peerDependencies": {
     "react": ">=16.0.0",
     "next": ">=11"
-  },
-  "optionalDependencies": {
-    "next": ">=10.0.0"
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.7",

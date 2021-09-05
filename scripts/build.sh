@@ -1,7 +1,5 @@
 #!/bin/sh
 
-yarn lint
-
 microbundle \
   --jsx 'React.createElement' \
   --jsxImportSource react \
