@@ -28,6 +28,12 @@ if [ $? != 0 ]; then
   exit 1
 fi
 
+sh scripts/build.sh
+if [ $? != 0 ]; then
+  printf "\n\n$Red$(echo Build failed.)$Color_Off"
+  exit 1
+fi
+
 printf "\n\n$BICyan$(echo Bumping the release number..)$Color_Off"
 
 yarn release

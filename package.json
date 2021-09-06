@@ -6,7 +6,7 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write src",
     "build": "sh scripts/build.sh",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "sh scripts/publish.sh",
     "lint": "eslint --ext .ts,.tsx src",
     "release": "standard-version",
     "publish-release": "git push --follow-tags origin master && yarn publish",
