@@ -2,7 +2,7 @@
  * @source https://usehooks.com/useLocalStorage/
  */
 
-import { useState, useCallback, Dispatch, SetStateAction, useEffect } from 'react'
+import { useState, Dispatch, SetStateAction, useEffect } from 'react'
 
 import { useWindow } from './useWindow'
 
@@ -24,20 +24,14 @@ export const useLocalStorage = <T>(key: string, initialValue: T, shouldLogErrors
     }
   }, [localWindow, key, isPrimitive, shouldLogErrors])
 
-  /** Sets given value to local storage, and syncs the state value  */
-  const setValue = useCallback(
-    (value: T) => {
-      try {
-        setStoredValue(value)
-        localWindow?.localStorage?.setItem(key, isPrimitive ? (value as unknown as string) : JSON.stringify(value))
-      } catch (error) {
-        shouldLogErrors && console.error('[useLocalStorageError]:', error)
-      }
-    },
-    [key, shouldLogErrors, localWindow, isPrimitive]
-  )
+  useEffect(() => {
+    localWindow?.localStorage?.setItem(
+      key,
+      isPrimitive ? (storedValue as unknown as string) : JSON.stringify(storedValue)
+    )
+  }, [storedValue, isPrimitive, key, localWindow])
 
-  return [storedValue, setValue]
+  return [storedValue, setStoredValue]
 }
 
 export interface Options {
