@@ -1,12 +1,11 @@
 {
   "name": "@caldwell619/react-hooks",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Collection of useful, reusable React hooks",
   "scripts": {
     "type-check": "tsc --noEmit",
     "format": "prettier --write src",
     "build": "sh scripts/build.sh",
-    "prepublishOnly": "sh scripts/build.sh",
     "lint": "eslint --ext .ts,.tsx src",
     "release": "standard-version",
     "publish-release": "git push --follow-tags origin master && yarn publish",
