@@ -1,6 +1,6 @@
 {
   "name": "@caldwell619/react-hooks",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Collection of useful, reusable React hooks",
   "scripts": {
     "type-check": "tsc --noEmit",
