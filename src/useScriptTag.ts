@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react'
 
 /** This hook makes it super easy to dynamically load an external script and know when its loaded. This is useful when you need to interact with a 3rd party library (Stripe, Google Analytics, etc) and you'd prefer to load the script when needed rather then include it in the document head for every page request. */
-export const useScriptTag = (src: string) => {
+export const useScriptTag = (src: string, defer?: boolean) => {
   // Keep track of script status ("idle", "loading", "ready", "error")
   const [status, setStatus] = useState(src ? 'loading' : 'idle')
   useEffect(() => {
@@ -22,7 +22,11 @@ export const useScriptTag = (src: string) => {
       // Create script
       script = document.createElement('script')
       script.src = src
-      script.async = true
+      if (defer) {
+        script.defer = true
+      } else {
+        script.async = true
+      }
       script.setAttribute('data-status', 'loading')
       // Add script to document body
       document.body.appendChild(script)
